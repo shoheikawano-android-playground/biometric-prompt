@@ -1,0 +1,48 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs'
+
+android {
+    compileSdkVersion app.compileSdk
+
+    defaultConfig {
+        applicationId app.appId
+        minSdkVersion app.minSdk
+        targetSdkVersion app.targetSdk
+        versionCode app.versionCode
+        versionName app.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation depts.biometric
+
+    implementation depts.kotlin.stdlib
+    implementation depts.appcompat
+    implementation depts.corektx
+    implementation depts.material
+    implementation depts.constraintLayout
+    implementation depts.navigation.fragment
+    implementation depts.navigation.ui
+    testImplementation depts.junit
+}
